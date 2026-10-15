@@ -23,8 +23,8 @@ caliperPiston.area.rear   = car.caliper.rear.pistonCount .* (car.caliper.rear.pi
 
 
 % It is important to distinguish that this is a pedal forward calculation. The ultimate question we are asking is 
-% "For our car setup and a given force on pedal, what force do we think the tires experience?"
-
+% "For our car setup and a given force on pedal, what torque does the axles
+% experience?
 % Pedal force after mechanical advantage of pedal
 pedal.forceOutput = Fpedal .* pedalRatio;
 

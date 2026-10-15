@@ -14,7 +14,6 @@ function simulation = brakeSimulate(car, Fpedal, vInitial)
 car.tireParameters = struct(car.tire.Parameters);
 
 % define initial values i need to fix
-    muBrakepad = 0.8; % CHANGE: Given here, should calculate in separate file or include in specs
     pedalRatio = car.pedal.ratio;    
     bias = 0.5; % CHANGE: Given here, should be in car specs
     
@@ -77,7 +76,7 @@ dt = stepDuration;
 
 % Evaluate physics at current time
     FpedalNow = Fpedal(time);
-    step = brakeStep(car, FpedalNow, speed, omega, muBrakepad, pedalRatio, bias, decel);
+    step = brakeStep(car, FpedalNow, speed, omega, pedalRatio, bias, decel);
 
     decel = step.decel;
     slip = step.slip;

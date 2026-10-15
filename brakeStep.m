@@ -10,7 +10,7 @@
 % Addition: 
 % ------------------------------------------------------------------------
 %% Code
-function results = brakeStep(car, Fpedal, speed, omega, muBrakepad, pedalRatio, bias, decel)
+function results = brakeStep(car, Fpedal, speed, omega, pedalRatio, bias, decel)
 
 
 g = 9.81;
@@ -18,6 +18,7 @@ g = 9.81;
 m = car.vehicle.mass;
 L = car.vehicle.wheelbase;
 h = car.vehicle.cgHeight;
+muBrakepad = car.pad.frictionCoefficient;
 frontFraction = 1 - car.vehicle.rearWeightPercent / 100;
 muTire = car.tireTest.frictionCoefficient; % This will be removed once MF is implemented. Aswell as alot of other things!
 
@@ -35,7 +36,7 @@ decelRequest = decel; %OLD AND USELESS, STOP USING DECEL REQUEST
 % As a car brakes, some of the weight of the rear tires will be transferred
 % to the front tires. This is only influenced (dynamically) by the current
 % requested deceleration of the car. So we calculate;
-weightTransfer = m .* decelRequest .* h ./ L; 
+weightTransfer = m .* decel .* h ./ L; 
 
 % Now we have a way of knowing the normal forces on each of the tires.
 % ASSUMING NO SIDE MOTION YET, JUST DIVIDE BY 2 TO GET NORMAL ON EACH TIRE
